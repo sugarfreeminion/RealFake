@@ -22,7 +22,45 @@ int main(int argc, char *argv[])
             }
             else
             {
-                fputs(buffer,stdout);
+                unsigned int index = 0;
+                unsigned int innerIndex = 0;
+                unsigned int sum = 0;
+
+                while(index < 19)
+                {
+                    if(buffer[index] != ' ')
+                    {
+                        while(innerIndex < 4)
+                        {
+                            if(innerIndex == 0 || innerIndex == 2)
+                            {
+                                //printf("Index Val: %u\n", (buffer[index]-48)*2);
+
+                                sum = sum + ((buffer[index]-48)*2);
+                            }
+                            else
+                            {
+                                //printf("Index Val: %u\n",buffer[index]-48);   
+                                sum = sum + (buffer[index]-48);
+                            }
+                            ++innerIndex;
+                            ++index;
+                        }
+
+                        innerIndex = 0;
+                    }
+                    ++index;
+                }
+                if(sum % 10 == 0)
+                {
+                    printf("Real\n");
+                }
+                else
+                {
+                    printf("Fake\n");
+                }
+                //printf("Sum: %u\n", sum);
+                //fputs(buffer,stdout);
             }
         }
         fclose(pFile);
